@@ -1,0 +1,16 @@
+.social-btn {
+  display: inline-block;
+  height: 40px;
+  width: 80px;
+  background-color: #dfdfdf;
+  color: #2308a9;
+  border: 1px solid black;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+}
+.social-btn:hover {
+  background-color: lighten(#dfdfdf, 50%);
+  color: lighten(#2308a9, 10%);
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
