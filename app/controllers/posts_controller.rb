@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
   end
 
   def new
@@ -12,9 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
+    @post = Post.new( params_for_post )
 
     if @post.save
       @post.update(title: "SPAM") if @post.id % 5 == 0
@@ -27,11 +25,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
 
@@ -45,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
 
     if @post.destroy
       flash[:notice] = "\"#{@post.title}\" was deleted successfully."
@@ -53,6 +51,11 @@ class PostsController < ApplicationController
     else
       flash.now[:alert] = "There was an error deleting the post."
       render :show
-    end 
+    end
+  end
+
+  private
+  def params_for_post
+    params.require(:post).permit(:title,:body)
   end
 end

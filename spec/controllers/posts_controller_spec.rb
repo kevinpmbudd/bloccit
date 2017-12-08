@@ -114,7 +114,7 @@ RSpec.describe PostsController, type: :controller do
   describe "DELETE destroy" do
     it "deletes the post" do
       delete :destroy, params: { id: my_post.id }
-      count = Post. where({id: my_post.id}).size
+      count = Post.where({id: my_post.id}).size
       expect(count).to eq 0
     end
 

@@ -18,6 +18,26 @@ module RandomData
     sentence.capitalize << "."
   end
 
+  def self.random_question
+    strings = []
+    rand(5..10).times do
+      strings << random_word
+    end
+
+    sentence = strings.join(" ")
+    sentence.capitalize << "?"
+  end
+
+  def self.random_title
+    strings = []
+    rand(1..3).times do
+      strings << random_word
+    end
+
+    sentence = strings.join(" ")
+    sentence.capitalize
+  end
+
   def self.random_word
     letters = ('a'..'z').to_a
     letters.shuffle!
