@@ -21,8 +21,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'thor', '0.19.1'
-
+# Used for styling 
 gem 'bootstrap-sass'
+# Used for encrypting passwords
+gem 'bcrypt'
 
 group :development do
   # Use sqlite3 as the development database for Active Record
