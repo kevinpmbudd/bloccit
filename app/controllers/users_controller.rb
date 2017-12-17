@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new( params_for_user )
+    @user = User.new( params.permit(:name,:email,:password,:password_confirmation) )
 
     if @user.save
       flash[:notice] = "Welcome to Bloccit #{@user.name}!"
@@ -15,8 +15,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm
+    @user = User.new( params_for_user )
+  end
+
   private
     def params_for_user
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
     end
+    helper_method :params_for_user
 end
