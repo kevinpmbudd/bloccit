@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'sponsored_posts/show'
-
-  get 'sponsored_posts/new'
-
-  get 'sponsored_posts/edit'
-
   resources :advertisements, :questions
 
   resources :topics do
@@ -15,6 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create] do
     post 'confirm', on: :collection
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
 
   get 'about' => 'welcome#about'
 
