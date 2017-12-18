@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
   let(:user_with_caps_name) { User.create!(name: "BLOCCIT USER", email: "user1@bloccit.com", password: "password") }
   let(:user_with_lowercase_name) { User.create!(name: "bloccit user", email: "user2@bloccit.com", password: "password") }
 
+  it { should have_many(:posts) }
+
   # shoulda tests for name
   it { should validate_presence_of(:name) }
   it { should validate_length_of(:name).is_at_least(1) }

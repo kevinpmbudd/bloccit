@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
   before_save :normalize_email, :normalize_name
 
   validates :name,
