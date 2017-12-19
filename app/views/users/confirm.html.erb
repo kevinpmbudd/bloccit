@@ -6,8 +6,10 @@
   <p><strong>Name:</strong> <%= @user.name %></p>
   <table>
     <tr>
-      <td><%= button_to "Yes", {controller: "users", action: "create", params: params_for_user}, class: 'btn btn-success' %></td>
+      <td><%= button_to "Yes", {controller: "users", action: "create", params: { user: params_for_user } }, class: 'btn btn-success' %></td>
       <td><%= button_to "No", {controller: "users", action: "new"}, class: 'btn btn-warning', method: "get" %></td>
     </tr>
   </table>
 </div>
+
+<p> <%= params %></p>
