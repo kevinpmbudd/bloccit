@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
-  before_save :normalize_email, :normalize_name
+  before_save :normalize_email, :normalize_name, :assign_role
+  before_save
 
   validates :name,
             length: { minimum: 1, maximum: 100 },
@@ -21,6 +22,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  enum role: [:member, :admin]
+
   private
     def new_user?
       password_digest.nil?
@@ -32,5 +35,9 @@ class User < ApplicationRecord
 
     def normalize_name
       self.name = name.split.map { |n| n.capitalize }.join(' ') if name.present?
+    end
+
+    def assign_role
+      self.role ||= :member
     end
 end
