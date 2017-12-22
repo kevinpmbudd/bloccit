@@ -77,4 +77,18 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe "#create_vote" do
+    it "adds one up vote to post" do
+      expect(post.up_votes).to eq(1)
+    end
+
+    it "associates the vote with the post" do
+      expect(post.votes.first.post_id).to eq(post.id)
+    end
+
+    it "associates the vote with the user" do
+      expect(post.votes.first.user_id).to eq(user.id)
+    end
+  end
 end
