@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   before_save :normalize_email, :normalize_name, :assign_role
   before_save
