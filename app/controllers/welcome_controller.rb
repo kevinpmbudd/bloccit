@@ -9,5 +9,5 @@ class WelcomeController < ApplicationController
   end
 
   def faq
-  end 
+  end
 end

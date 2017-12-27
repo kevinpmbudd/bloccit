@@ -21,10 +21,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'thor', '0.19.1'
-# Used for styling 
+# Used for styling
 gem 'bootstrap-sass'
 # Used for encrypting passwords
 gem 'bcrypt'
+# Use figaro to store env variables
+gem 'figaro', '1.0'
 
 group :development do
   # Use sqlite3 as the development database for Active Record

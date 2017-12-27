@@ -2,9 +2,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   before_save :normalize_email, :normalize_name, :assign_role
-  before_save
 
   validates :name,
             length: { minimum: 1, maximum: 100 },
@@ -26,6 +26,10 @@ class User < ApplicationRecord
   has_secure_password
 
   enum role: [:member, :moderator, :admin]
+
+  def favorite_for(post)
+    favorites.where(post_id: post.id).first
+  end
 
   private
     def new_user?

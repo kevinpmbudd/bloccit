@@ -1,0 +1,16 @@
+class FavoriteMailer < ApplicationMailer
+  default from: "kevinpmbudd@gmail.com",
+          cc: "abraham@bloc.io"
+
+  def new_comment(user, post, comment)
+    headers["Message-ID"] = "<comments/#{comment.id}@peaceful-peak-12986.herokuapp.com>"
+    headers["In-Reply-To"] = "<post/#{post.id}@peaceful-peak-12986.herokuapp.com>"
+    headers["References"] = "<post/#{post.id}@peaceful-peak-12986.herokuapp.com>"
+
+    @user = user
+    @post = post
+    @comment = comment
+
+    mail(to: user.email, subject: "New comment on #{post.title}")
+  end
+end
