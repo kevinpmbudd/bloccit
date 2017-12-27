@@ -1,6 +1,5 @@
 class FavoriteMailer < ApplicationMailer
-  default from: "kevinpmbudd@gmail.com",
-          cc: "abraham@bloc.io"
+  default from: "kevinpmbudd@gmail.com"
 
   def new_comment(user, post, comment)
     headers["Message-ID"] = "<comments/#{comment.id}@peaceful-peak-12986.herokuapp.com>"
