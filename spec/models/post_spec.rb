@@ -92,4 +92,18 @@ RSpec.describe Post, type: :model do
       expect(post.votes.first.user_id).to eq(user.id)
     end
   end
+
+  describe "#favorite_post" do
+    it "favorites a new post after it is created" do
+      expect(post.favorites.first.user).to eq(user)
+    end
+
+    it "sends an email to the usere when they create a post" do
+      @title = "newest title"
+      @body = "a new body for the new post today"
+  
+      post = topic.posts.create(title: @title, body: @body, user: user)
+      expect(FavoriteMailer).to receive(:new_post).with(user, post).and_return(double(deliver_now: true))
+    end
+  end
 end
