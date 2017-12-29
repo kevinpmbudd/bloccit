@@ -101,9 +101,11 @@ RSpec.describe Post, type: :model do
     it "sends an email to the usere when they create a post" do
       @title = "newest title"
       @body = "a new body for the new post today"
-  
-      post = topic.posts.create(title: @title, body: @body, user: user)
+      post = topic.posts.new(title: @title, body: @body, user: user)
+
       expect(FavoriteMailer).to receive(:new_post).with(user, post).and_return(double(deliver_now: true))
+
+      post.save!
     end
   end
 end
