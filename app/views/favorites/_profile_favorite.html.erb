@@ -1,0 +1,11 @@
+<div class="media">
+  <div class="media-body">
+    <% post = Post.find_by(id: favorite.post_id) %>
+    <% author = User.find_by(id: post.user_id) %>
+    <%= image_tag author.avatar_url(36) %>
+    <strong><%= post.title %></strong>
+    <p><%= post.body %></p>
+    <p>number of votes: <%= Vote.where(post_id: favorite.post_id).count %></p>
+    <p>number of comments: <%= Comment.where(post_id: favorite.post_id).count %></p>
+  </div>
+</div>
